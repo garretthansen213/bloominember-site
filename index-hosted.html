@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloomin' Ember | Handcrafted Lotions, Room Sprays &amp; Fragrance · Grantsville, UT</title>
+<meta name="description" content="Small-batch lotions, room sprays, perfume and cologne handcrafted in Grantsville, Utah.">
+<link rel="icon" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#131310; --bg2:#1a1915; --card:#1f1d18; --line:#34302a;
+    --bronze:#b07f4f; --bronze-l:#d2a272; --cream:#f1e7d8; --muted:#a79c8c; --muted2:#7a7062;
+    --sage:#8d9a78; --ember:#d9773a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--cream);font-family:Jost,system-ui,sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+  h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.08}
+  .eyebrow{font-size:.76rem;letter-spacing:.32em;text-transform:uppercase;color:var(--bronze-l);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--bronze)}
+  section{padding:100px 0;position:relative}
+  .sec-head{max-width:620px;margin-bottom:50px}
+  .sec-head.center{margin-inline:auto;text-align:center}
+  .sec-head.center .eyebrow{justify-content:center}
+  .sec-head h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem;font-weight:300}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:Jost;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;padding:16px 30px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.2s}
+  .btn-primary{background:var(--bronze);color:#16130f}
+  .btn-primary:hover{background:var(--bronze-l)}
+  .btn-ghost{border-color:rgba(241,231,216,.3);color:var(--cream);background:transparent}
+  .btn-ghost:hover{border-color:var(--bronze-l);color:var(--bronze-l)}
+
+  /* floating frosted nav */
+  header{position:fixed;top:14px;left:0;right:0;z-index:50;padding:0 16px;pointer-events:none}
+  .nav{pointer-events:auto;max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 10px 0 12px;border-radius:999px;
+    background:linear-gradient(135deg,rgba(241,231,216,.10),rgba(241,231,216,.03));
+    -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid rgba(241,231,216,.16);box-shadow:0 10px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(241,231,216,.16)}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{width:44px;height:44px;border-radius:50%;border:1px solid rgba(176,127,79,.5)}
+  .brand span{font-family:"Cormorant Garamond";font-weight:700;font-size:1.4rem;letter-spacing:.02em}
+  .links{display:flex;align-items:center;gap:28px;font-size:.88rem;letter-spacing:.06em}
+  .links a:not(.cart-btn):hover{color:var(--bronze-l)}
+  .cart-btn{position:relative;display:flex;align-items:center;gap:8px;background:var(--bronze);color:#16130f;border-radius:999px;padding:10px 18px;font-weight:500;cursor:pointer;border:0;font-family:Jost;font-size:.85rem;letter-spacing:.06em}
+  .cart-btn:hover{background:var(--bronze-l)}
+  .cart-count{background:#16130f;color:var(--bronze-l);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.75rem;padding:0 6px}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .burger{display:none;background:none;border:0;color:var(--cream);font-size:1.6rem;cursor:pointer;padding:0 8px}
+
+  /* hero */
+  .hero{padding:150px 0 90px;overflow:hidden}
+  .hero::before{content:"";position:absolute;left:50%;top:40%;width:900px;height:900px;transform:translate(-10%,-50%);background:radial-gradient(circle,rgba(176,127,79,.18),transparent 60%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:500}
+  .hero h1 em{font-style:italic;color:var(--bronze-l)}
+  .hero .lead{color:var(--muted);font-size:1.15rem;font-weight:300;max-width:500px;margin:22px 0 34px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-logo{width:100%;max-width:460px;margin-left:auto;-webkit-mask-image:radial-gradient(circle,#000 58%,transparent 71%);mask-image:radial-gradient(circle,#000 58%,transparent 71%)}
+  .perks{display:flex;gap:30px;flex-wrap:wrap;margin-top:44px;color:var(--muted);font-size:.88rem}
+  .perks div{display:flex;align-items:center;gap:8px}
+  .perks svg{width:18px;height:18px;color:var(--bronze-l)}
+
+  /* categories */
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .cat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 24px;text-align:center;cursor:pointer;transition:.25s}
+  .cat:hover,.cat.active{border-color:var(--bronze);transform:translateY(-4px)}
+  .cat svg{width:64px;height:64px;margin:0 auto 16px;color:var(--bronze-l)}
+  .cat h3{font-size:1.6rem}
+  .cat p{color:var(--muted);font-size:.9rem;font-weight:300}
+
+  /* products */
+  .alt{background:var(--bg2);border-block:1px solid var(--line)}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 20px;border-radius:999px;font-family:Jost;font-size:.85rem;letter-spacing:.06em;cursor:pointer;transition:.2s}
+  .filters button:hover{color:var(--cream)}
+  .filters button.on{background:var(--bronze);border-color:var(--bronze);color:#16130f}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .prod:hover{border-color:rgba(176,127,79,.6);transform:translateY(-4px)}
+  .prod-img{aspect-ratio:4/3;display:grid;place-items:center;position:relative}
+  .prod-img svg{width:56%;height:auto;filter:drop-shadow(0 18px 24px rgba(0,0,0,.45))}
+  .prod-img .badge{position:absolute;top:14px;left:14px;background:rgba(19,19,16,.75);border:1px solid var(--line);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:var(--bronze-l)}
+  .prod-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+  .prod-type{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2)}
+  .prod h3{font-size:1.5rem;margin:4px 0 6px}
+  .notes{color:var(--muted);font-size:.87rem;font-weight:300;flex:1}
+  .prod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+  .price{font-family:"Cormorant Garamond";font-size:1.5rem;font-weight:700;color:var(--bronze-l)}
+  .add{background:transparent;border:1px solid var(--bronze);color:var(--cream);border-radius:999px;padding:9px 16px;font-family:Jost;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.2s}
+  .add:hover{background:var(--bronze);color:#16130f}
+  .add.done{background:var(--sage);border-color:var(--sage);color:#16130f}
+
+  /* story */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .story-art{aspect-ratio:4/5;border-radius:24px;border:1px solid var(--line);background:
+    radial-gradient(circle at 50% 38%,rgba(217,119,58,.35),transparent 45%),
+    radial-gradient(circle at 50% 100%,rgba(176,127,79,.25),transparent 60%),var(--card);display:grid;place-items:center;overflow:hidden;position:relative}
+  .story-art svg{width:58%}
+  .story-art .flicker{animation:flick 3s ease-in-out infinite;transform-origin:50% 100%}
+  @keyframes flick{50%{transform:scaleY(1.06) scaleX(.97)}}
+  .story h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:20px}
+  .story p{color:var(--muted);font-weight:300;margin-bottom:16px;font-size:1.05rem}
+  .sig{font-family:"Cormorant Garamond";font-style:italic;font-size:1.6rem;color:var(--bronze-l);margin-top:10px}
+  .vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+  .vals div{border-top:1px solid var(--line);padding-top:14px}
+  .vals b{font-family:"Cormorant Garamond";font-size:1.3rem;display:block}
+  .vals small{color:var(--muted2);font-size:.85rem}
+
+  /* guide */
+  .guide{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .g-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
+  .g-card .num{font-family:"Cormorant Garamond";font-style:italic;font-size:2.6rem;color:var(--bronze);line-height:1}
+  .g-card h3{font-size:1.6rem;margin:10px 0 10px}
+  .g-card p,.g-card li{color:var(--muted);font-weight:300;font-size:.95rem}
+  .g-card ul{padding-left:18px;display:grid;gap:6px}
+  .families{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+  .fam{border-radius:20px;padding:26px;border:1px solid var(--line);background:var(--card)}
+  .fam .dot{width:38px;height:38px;border-radius:50%;margin-bottom:14px}
+  .fam h4{font-family:"Cormorant Garamond";font-size:1.45rem;font-weight:600}
+  .fam p{color:var(--muted);font-size:.88rem;font-weight:300}
+
+  /* faq */
+  .faq{max-width:820px;margin:0 auto}
+  details{border-bottom:1px solid var(--line);padding:22px 0}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:"Cormorant Garamond";font-size:1.45rem;font-weight:600}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--bronze-l);font-family:Jost;font-weight:300;font-size:1.6rem;line-height:1;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--muted);font-weight:300;margin-top:10px}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+  .contact h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+  .contact p.sub{color:var(--muted);font-weight:300;margin:14px 0 28px}
+  .c-line{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+  .c-line svg{width:22px;height:22px;color:var(--bronze-l);flex:none}
+  .c-line small{display:block;color:var(--muted2);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+  form{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  input,select,textarea{width:100%;background:#151410;border:1px solid var(--line);border-radius:12px;padding:13px 14px;color:var(--cream);font:inherit;font-size:.97rem}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bronze)}
+  textarea{min-height:110px;resize:vertical}
+  .ok{display:none;text-align:center;padding:40px 0}
+  .ok h3{font-size:2rem;margin-bottom:8px}
+  .ok p{color:var(--muted)}
+
+  /* newsletter + footer */
+  .news{border:1px solid var(--line);border-radius:28px;padding:56px 40px;text-align:center;background:radial-gradient(circle at 50% 0,rgba(176,127,79,.2),transparent 60%),var(--card)}
+  .news h2{font-size:clamp(2rem,4.5vw,3rem)}
+  .news p{color:var(--muted);margin:10px 0 26px;font-weight:300}
+  .news form{display:flex;gap:10px;max-width:480px;margin:0 auto;background:none;border:0;padding:0}
+  .news input{border-radius:999px;padding:15px 20px}
+  footer{border-top:1px solid var(--line);margin-top:100px;padding:56px 0 30px;color:var(--muted);font-size:.9rem;position:relative;z-index:1}
+  .foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+  .foot h4{color:var(--cream);font-family:"Cormorant Garamond";font-size:1.25rem;margin-bottom:12px}
+  .foot a{display:block;margin-bottom:7px}
+  .foot a:hover{color:var(--bronze-l)}
+  .copy{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted2)}
+
+  /* cart drawer */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.3s;z-index:80}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#171612;border-left:1px solid var(--line);z-index:90;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+  body.cart-open .scrim{opacity:1;pointer-events:auto}
+  body.cart-open .drawer{transform:none}
+  .d-head{display:flex;justify-content:space-between;align-items:center;padding:24px;border-bottom:1px solid var(--line)}
+  .d-head h3{font-size:1.8rem}
+  .x{background:none;border:0;color:var(--cream);font-size:1.6rem;cursor:pointer}
+  .d-items{flex:1;overflow:auto;padding:10px 24px}
+  .empty{color:var(--muted);text-align:center;padding:60px 0;font-weight:300}
+  .li{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+  .li .sw{width:56px;height:56px;border-radius:12px;display:grid;place-items:center}
+  .li .sw svg{width:60%}
+  .li b{font-family:"Cormorant Garamond";font-size:1.2rem;display:block;line-height:1.1}
+  .li small{color:var(--muted2)}
+  .qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--cream);cursor:pointer}
+  .li .lp{font-family:"Cormorant Garamond";font-weight:700;font-size:1.2rem;color:var(--bronze-l)}
+  .d-foot{padding:24px;border-top:1px solid var(--line)}
+  .tot{display:flex;justify-content:space-between;font-family:"Cormorant Garamond";font-size:1.5rem;margin-bottom:6px}
+  .d-foot small{color:var(--muted2);display:block;margin-bottom:16px}
+  .d-foot .btn{width:100%}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:var(--cream);color:#16130f;padding:12px 22px;border-radius:999px;font-size:.9rem;opacity:0;transition:.3s;z-index:100;pointer-events:none}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast{white-space:nowrap;max-width:calc(100% - 32px);overflow:hidden;text-overflow:ellipsis}
+  body.cart-open .toast{bottom:auto;top:90px}
+  section[id]{scroll-margin-top:96px}
+
+  @media (max-width:980px){
+    .hero-grid,.story,.contact{grid-template-columns:1fr}
+    .hero-logo{margin:0 auto;max-width:340px;order:-1}
+    .cats,.grid,.families{grid-template-columns:1fr 1fr}
+    .guide{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    section{padding:70px 0}
+    .hero{padding-top:110px}
+    .nav{border-radius:20px;height:60px}
+    .burger{display:block}
+    .links{display:none;position:absolute;top:70px;left:16px;right:16px;flex-direction:column;gap:18px;padding:22px;border-radius:20px;
+      background:rgba(23,22,18,.78);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+      border:1px solid rgba(241,231,216,.16);box-shadow:0 10px 34px rgba(0,0,0,.45);pointer-events:auto}
+    .links.open{display:flex}
+    .cart-btn .lbl{display:none}
+    .grid{gap:14px}
+    .prod h3{font-size:1.25rem}
+    .prod-body{padding:16px}
+    .prod-foot{flex-direction:column;align-items:stretch;gap:10px}
+    .row,.vals{grid-template-columns:1fr}
+    .families{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr}
+    .news{padding:40px 20px}
+    .news form{flex-direction:column}
+    form{padding:22px}
+  }
+  @media (max-width:420px){ .cats{grid-template-columns:1fr 1fr} .cat{padding:22px 12px} .cat h3{font-size:1.3rem} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand"><img src="logo.webp" alt="Bloomin' Ember logo"><span>Bloomin’ Ember</span></a>
+    <nav class="links" id="links">
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#guide">Scent Guide</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()" aria-label="Open cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="lbl">Bag</span><span class="cart-count" id="count">0</span>
+      </button>
+      <button class="burger" aria-label="Menu" onclick="links.classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Handcrafted in Grantsville, Utah</div>
+        <h1>Scents that feel like <em>home.</em></h1>
+        <p class="lead">Small-batch lotions, room sprays, perfumes and colognes, poured and blended by hand with ingredients we’re proud of.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-primary">Shop the Collection</a>
+          <a href="#guide" class="btn btn-ghost">Find Your Scent</a>
+        </div>
+        <div class="perks">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-5-3-8-7-8-11a8 8 0 0 1 16 0c0 4-3 8-8 11z"/><path d="M12 7v7M9 11h6"/></svg>Small batch</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Skin-loving ingredients</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Local pickup available</div>
+        </div>
+      </div>
+      <img class="hero-logo" src="logo.webp" alt="Bloomin' Ember highland cow logo">
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="cats">
+        <div class="cat" data-go="Lotion">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="20" y="22" width="24" height="34" rx="6"/><path d="M26 22v-6h12v6M32 16V8h8"/></svg>
+          <h3>Lotions</h3><p>Rich, whipped &amp; silky</p>
+        </div>
+        <div class="cat" data-go="Room Spray">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="22" y="24" width="20" height="32" rx="4"/><path d="M27 24v-6h10v6M30 18v-5h10M44 12l6-3M44 15h7M44 18l6 3"/></svg>
+          <h3>Room Sprays</h3><p>Fresh air, any room</p>
+        </div>
+        <div class="cat" data-go="Perfume">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 32a14 14 0 0 1 28 0v14a10 10 0 0 1-10 10h-8a10 10 0 0 1-10-10z"/><path d="M27 18h10v-6H27zM24 18h16"/></svg>
+          <h3>Perfume</h3><p>Soft, warm &amp; floral</p>
+        </div>
+        <div class="cat" data-go="Cologne">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="18" y="24" width="28" height="32" rx="2"/><path d="M26 24v-8h12v8M24 16h16v-5H24z"/></svg>
+          <h3>Cologne</h3><p>Bold, woodsy &amp; clean</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">The Collection</div>
+        <h2>Shop Bloomin’ Ember</h2>
+        <p>Every bottle is made in small batches, so favorites can sell out. Grab yours while it’s fresh.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="on" data-f="All">All</button>
+        <button data-f="Lotion">Lotions</button>
+        <button data-f="Room Spray">Room Sprays</button>
+        <button data-f="Perfume">Perfume</button>
+        <button data-f="Cologne">Cologne</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap story">
+      <div class="story-art">
+        <svg viewBox="0 0 200 240">
+          <defs><linearGradient id="jar" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3a3128"/><stop offset="1" stop-color="#1e1a15"/></linearGradient>
+          <radialGradient id="fl" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#ffe3a3"/><stop offset=".5" stop-color="#f2a04a"/><stop offset="1" stop-color="#d9773a" stop-opacity="0"/></radialGradient></defs>
+          <g class="flicker"><ellipse cx="100" cy="70" rx="16" ry="34" fill="url(#fl)"/><ellipse cx="100" cy="82" rx="6" ry="14" fill="#fff4d6"/></g>
+          <line x1="100" y1="96" x2="100" y2="108" stroke="#2a2520" stroke-width="3"/>
+          <rect x="40" y="106" width="120" height="120" rx="18" fill="url(#jar)" stroke="#b07f4f" stroke-width="2"/>
+          <rect x="62" y="140" width="76" height="52" rx="6" fill="none" stroke="#b07f4f" stroke-width="1.5"/>
+          <text x="100" y="166" fill="#d2a272" font-family="Cormorant Garamond" font-size="15" font-weight="700" text-anchor="middle">BLOOMIN’</text>
+          <text x="100" y="182" fill="#d2a272" font-family="Cormorant Garamond" font-size="15" font-weight="700" text-anchor="middle">EMBER</text>
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow">Our Story</div>
+        <h2>Made by hand, right here in Grantsville.</h2>
+        <p>Bloomin’ Ember started at the kitchen table with a simple idea: everyday self-care should feel a little special. Every lotion, spray and fragrance is blended in small batches, tested on our own family first, and bottled with care.</p>
+        <p>Our highland cow is a nod to the rugged, cozy spirit of Utah’s west desert: warm, a little wild, and always welcoming.</p>
+        <div class="sig">With love, the Bloomin’ Ember family</div>
+        <div class="vals">
+          <div><b>Small Batch</b><small>Fresh, never mass-made</small></div>
+          <div><b>Locally Made</b><small>Grantsville, UT</small></div>
+          <div><b>Gift Ready</b><small>Bundles &amp; custom sets</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section id="guide" class="alt">
+    <div class="wrap">
+      <div class="sec-head center">
+        <div class="eyebrow">Scent Guide</div>
+        <h2>Get the Most From Every Bottle</h2>
+        <p>A few tips to help you find your signature scent and make it last all day.</p>
+      </div>
+      <div class="guide">
+        <div class="g-card"><div class="num">i.</div><h3>Make Fragrance Last</h3>
+          <ul><li>Apply lotion first: moisturized skin holds scent longer.</li><li>Spray on pulse points: wrists, neck, behind the ears.</li><li>Don’t rub wrists together; it breaks down the top notes.</li></ul></div>
+        <div class="g-card"><div class="num">ii.</div><h3>Layer Like a Pro</h3>
+          <ul><li>Pair a lotion and perfume from the same family.</li><li>Try a warm lotion under a fresh scent for depth.</li><li>Mist a room spray on linens for a cozy finish.</li></ul></div>
+        <div class="g-card"><div class="num">iii.</div><h3>Care &amp; Storage</h3>
+          <ul><li>Store bottles away from sunlight and heat.</li><li>Keep caps tight to lock in freshness.</li><li>Best used within 12 months of opening.</li></ul></div>
+      </div>
+      <div class="families">
+        <div class="fam"><div class="dot" style="background:radial-gradient(circle,#e8b9b0,#b77a72)"></div><h4>Floral</h4><p>Rose, peony, lavender. Soft and romantic.</p></div>
+        <div class="fam"><div class="dot" style="background:radial-gradient(circle,#e7b277,#a8652c)"></div><h4>Warm &amp; Sweet</h4><p>Vanilla, amber, brown sugar. Cozy and comforting.</p></div>
+        <div class="fam"><div class="dot" style="background:radial-gradient(circle,#a3ad86,#5f6b4b)"></div><h4>Fresh &amp; Green</h4><p>Eucalyptus, sage, citrus. Clean and bright.</p></div>
+        <div class="fam"><div class="dot" style="background:radial-gradient(circle,#9b8064,#4c3a2a)"></div><h4>Woodsy</h4><p>Cedar, sandalwood, leather. Bold and grounded.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head center"><div class="eyebrow">FAQ</div><h2>Good Questions</h2></div>
+      <div class="faq">
+        <details open><summary>Do you offer local pickup?</summary><p>Yes! Choose local pickup in Grantsville at checkout and we’ll message you when your order is ready.</p></details>
+        <details><summary>Do you ship?</summary><p>We ship within the U.S. Orders usually go out within 2–4 business days.</p></details>
+        <details><summary>Are your products safe for sensitive skin?</summary><p>We use gentle, skin-loving ingredients, but everyone’s skin is different. Check the ingredient list and patch test first if you have sensitivities or allergies.</p></details>
+        <details><summary>Can I order custom scents or gift sets?</summary><p>Absolutely. We love making custom bundles for birthdays, weddings, teachers and corporate gifts. Use the contact form below to tell us what you have in mind.</p></details>
+        <details><summary>Do you sell wholesale or at markets?</summary><p>We pop up at local markets and events and are open to wholesale. Reach out for details.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt">
+    <div class="wrap contact">
+      <div>
+        <div class="eyebrow">Say Hello</div>
+        <h2>Custom orders, questions &amp; gifts</h2>
+        <p class="sub">Send us a note and we’ll get back to you within a day or two.</p>
+        <div class="c-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><small>Email</small>hello@bloominember.com</div></div>
+        <div class="c-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><small>Based in</small>Grantsville, Utah</div></div>
+        <div class="c-line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg><div><small>Instagram</small>@bloominember</div></div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="row">
+            <div class="field"><label for="cn">Name</label><input id="cn" name="name" required></div>
+            <div class="field"><label for="ce">Email</label><input id="ce" name="email" type="email" required></div>
+          </div>
+          <div class="field"><label for="ct">I’m interested in</label>
+            <select id="ct" name="topic"><option>A question about a product</option><option>Custom scent / gift set</option><option>Wholesale or events</option><option>Order help</option><option>Something else</option></select></div>
+          <div class="field"><label for="cm">Message</label><textarea id="cm" name="message" required></textarea></div>
+          <button class="btn btn-primary" type="submit" style="width:100%">Send Message</button>
+        </form>
+        <div class="ok" id="ok"><h3>Thank you!</h3><p>Your message is on its way. We’ll be in touch soon.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section style="padding-bottom:0">
+    <div class="wrap">
+      <div class="news">
+        <div class="eyebrow" style="justify-content:center">The Ember List</div>
+        <h2>New scents, restocks &amp; market dates</h2>
+        <p>Join the list and be the first to know when small batches drop.</p>
+        <form onsubmit="event.preventDefault();toast('You’re on the list! 🌸');this.reset()">
+          <input type="email" placeholder="Your email address" required>
+          <button class="btn btn-primary" type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a href="#top" class="brand" style="margin-bottom:14px"><img src="logo.webp" alt=""><span style="color:var(--cream)">Bloomin’ Ember</span></a><p>Handcrafted lotions, room sprays, perfume &amp; cologne from Grantsville, Utah.</p></div>
+      <div><h4>Shop</h4><a href="#shop" data-go="Lotion">Lotions</a><a href="#shop" data-go="Room Spray">Room Sprays</a><a href="#shop" data-go="Perfume">Perfume</a><a href="#shop" data-go="Cologne">Cologne</a></div>
+      <div><h4>Learn</h4><a href="#story">Our Story</a><a href="#guide">Scent Guide</a><a href="#faq">FAQ</a></div>
+      <div><h4>Connect</h4><a href="#contact">Contact</a><a href="#">Instagram</a><a href="#">Facebook</a></div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> Bloomin’ Ember · Grantsville, UT</span><span>Made by hand, with love.</span></div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="scrim" onclick="closeCart()"></div>
+<aside class="drawer" aria-label="Shopping bag">
+  <div class="d-head"><h3>Your Bag</h3><button class="x" onclick="closeCart()" aria-label="Close">×</button></div>
+  <div class="d-items" id="items"></div>
+  <div class="d-foot">
+    <div class="tot"><span>Subtotal</span><span id="sub">$0</span></div>
+    <small>Shipping or local pickup selected at checkout.</small>
+    <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- PRODUCTS: edit names, notes, prices & colors here ----------
+const PRODUCTS = [
+  {id:'l1', type:'Lotion',     name:'Honey Oat Whip',      notes:'Honey, oat milk, vanilla bean',        price:16, color:'#c99a5b', tag:'Bestseller'},
+  {id:'l2', type:'Lotion',     name:'Lavender Fields',     notes:'French lavender, chamomile, cream',    price:16, color:'#9b8bb4'},
+  {id:'l3', type:'Lotion',     name:'Sweet Amber',         notes:'Amber, brown sugar, sandalwood',       price:16, color:'#b0703c'},
+  {id:'r1', type:'Room Spray', name:'Campfire Cabin',      notes:'Smoked cedar, vanilla, ember',         price:12, color:'#8a5a3a', tag:'Signature'},
+  {id:'r2', type:'Room Spray', name:'Fresh Linen',         notes:'Cotton, white tea, bergamot',          price:12, color:'#a9b2a0'},
+  {id:'p1', type:'Perfume',    name:'Wild Bloom',          notes:'Peony, pear, soft musk',               price:28, color:'#d39a94', tag:'New'},
+  {id:'p2', type:'Perfume',    name:'Golden Hour',         notes:'Jasmine, amber, warm vanilla',         price:28, color:'#d6a15b'},
+  {id:'c1', type:'Cologne',    name:'Highlander',          notes:'Leather, cedarwood, black pepper',     price:30, color:'#6b5040', tag:'Bestseller'},
+  {id:'c2', type:'Cologne',    name:'Desert Sage',         notes:'Sage, vetiver, citrus peel',           price:30, color:'#7f8c68'},
+];
+
+const fmt = n => '$' + n.toFixed(2).replace(/\.00$/,'');
+function bottle(type, c){
+  if(type==='Lotion') return `<svg viewBox="0 0 100 140"><rect x="22" y="40" width="56" height="94" rx="14" fill="${c}"/><rect x="22" y="40" width="56" height="94" rx="14" fill="url(#sh)"/><rect x="38" y="24" width="24" height="18" rx="3" fill="#2b2620"/><path d="M50 24V10h20" stroke="#2b2620" stroke-width="6" fill="none"/><rect x="32" y="74" width="36" height="30" rx="3" fill="#f1e7d8" opacity=".9"/><circle cx="50" cy="89" r="6" fill="${c}"/></svg>`;
+  if(type==='Room Spray') return `<svg viewBox="0 0 100 140"><rect x="28" y="46" width="44" height="88" rx="8" fill="${c}"/><rect x="28" y="46" width="44" height="88" rx="8" fill="url(#sh)"/><rect x="38" y="30" width="24" height="18" rx="2" fill="#2b2620"/><rect x="42" y="18" width="20" height="14" rx="3" fill="#2b2620"/><path d="M64 22h12M66 16l10-5M66 28l10 5" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/><rect x="34" y="78" width="32" height="30" rx="2" fill="#f1e7d8" opacity=".9"/></svg>`;
+  if(type==='Perfume') return `<svg viewBox="0 0 100 140"><path d="M20 84a30 30 0 0 1 60 0v22a26 26 0 0 1-26 26h-8a26 26 0 0 1-26-26z" fill="${c}"/><path d="M20 84a30 30 0 0 1 60 0v22a26 26 0 0 1-26 26h-8a26 26 0 0 1-26-26z" fill="url(#sh)"/><rect x="40" y="44" width="20" height="14" fill="#2b2620"/><rect x="34" y="22" width="32" height="24" rx="6" fill="#b07f4f"/><ellipse cx="50" cy="98" rx="16" ry="10" fill="#f1e7d8" opacity=".9"/></svg>`;
+  return `<svg viewBox="0 0 100 140"><rect x="22" y="48" width="56" height="86" rx="4" fill="${c}"/><rect x="22" y="48" width="56" height="86" rx="4" fill="url(#sh)"/><rect x="38" y="36" width="24" height="14" fill="#2b2620"/><rect x="32" y="14" width="36" height="24" rx="3" fill="#2b2620"/><rect x="32" y="78" width="36" height="34" fill="#f1e7d8" opacity=".9"/><path d="M40 95h20" stroke="${c}" stroke-width="3"/></svg>`;
+}
+document.body.insertAdjacentHTML('afterbegin','<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs></svg>');
+
+let filter = 'All';
+function render(){
+  grid.innerHTML = PRODUCTS.filter(p => filter==='All' || p.type===filter).map(p => `
+    <article class="prod">
+      <div class="prod-img" style="background:radial-gradient(circle at 50% 45%, ${p.color}33, transparent 65%)">
+        ${p.tag ? `<span class="badge">${p.tag}</span>` : ''}${bottle(p.type, p.color)}
+      </div>
+      <div class="prod-body">
+        <div class="prod-type">${p.type}</div>
+        <h3>${p.name}</h3>
+        <div class="notes">${p.notes}</div>
+        <div class="prod-foot"><span class="price">${fmt(p.price)}</span><button class="add" data-id="${p.id}">Add to Bag</button></div>
+      </div>
+    </article>`).join('');
+}
+function setFilter(f){
+  filter = f;
+  document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('on', b.dataset.f===f));
+  render();
+}
+filters.addEventListener('click', e => { if(e.target.dataset.f) setFilter(e.target.dataset.f); });
+document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', () => {
+  setFilter(el.dataset.go); document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+}));
+
+// ---------- CART (remembered in this browser) ----------
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem('be-cart')) || {}; } catch(e) {}
+const save = () => { try { localStorage.setItem('be-cart', JSON.stringify(cart)); } catch(e) {} };
+function add(id){ cart[id] = (cart[id]||0) + 1; save(); drawCart(); toast(PRODUCTS.find(p=>p.id===id).name + ' added to your bag'); }
+function setQty(id, d){ cart[id] += d; if(cart[id] <= 0) delete cart[id]; save(); drawCart(); }
+function drawCart(){
+  const ids = Object.keys(cart).filter(id => PRODUCTS.find(p=>p.id===id));
+  count.textContent = ids.reduce((s,id)=>s+cart[id],0);
+  sub.textContent = fmt(ids.reduce((s,id)=>s+cart[id]*PRODUCTS.find(p=>p.id===id).price,0));
+  items.innerHTML = ids.length ? ids.map(id => { const p = PRODUCTS.find(x=>x.id===id); return `
+    <div class="li"><div class="sw" style="background:${p.color}22">${bottle(p.type,p.color)}</div>
+      <div><b>${p.name}</b><small>${p.type}</small>
+        <div class="qty"><button onclick="setQty('${id}',-1)">−</button>${cart[id]}<button onclick="setQty('${id}',1)">+</button></div></div>
+      <span class="lp">${fmt(p.price*cart[id])}</span></div>`; }).join('')
+    : '<div class="empty">Your bag is empty.<br>Find something lovely in the shop.</div>';
+}
+grid.addEventListener('click', e => {
+  const b = e.target.closest('.add'); if(!b) return;
+  add(b.dataset.id); b.textContent = 'Added ✓'; b.classList.add('done');
+  setTimeout(() => { b.textContent = 'Add to Bag'; b.classList.remove('done'); }, 1400);
+});
+function openCart(){ document.body.classList.add('cart-open'); }
+function closeCart(){ document.body.classList.remove('cart-open'); }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeCart(); });
+
+// CHECKOUT: swap this for a Shopify / Square / Stripe checkout link when ready.
+const CHECKOUT_URL = '';
+function checkout(){
+  const ids = Object.keys(cart);
+  if(!ids.length){ toast('Your bag is empty'); return; }
+  if(CHECKOUT_URL){ location.href = CHECKOUT_URL; return; }
+  const lines = ids.map(id => { const p = PRODUCTS.find(x=>x.id===id); return `${cart[id]} x ${p.name} (${p.type}) - ${fmt(p.price*cart[id])}`; });
+  const body = 'Hi! I would like to order:\n\n' + lines.join('\n') + '\n\nSubtotal: ' + sub.textContent + '\n\nPickup or shipping:\nName:\nPhone:';
+  location.href = 'mailto:hello@bloominember.com?subject=' + encodeURIComponent("Bloomin' Ember Order") + '&body=' + encodeURIComponent(body);
+}
+
+// ---------- misc ----------
+function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 2200); }
+contactForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(contactForm));
+  location.href = 'mailto:hello@bloominember.com?subject=' + encodeURIComponent(d.topic + ' - ' + d.name) + '&body=' + encodeURIComponent(d.message + '\n\n' + d.name + '\n' + d.email);
+  contactForm.style.display = 'none'; ok.style.display = 'block';
+});
+document.querySelectorAll('#links a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+yr.textContent = new Date().getFullYear();
+render(); drawCart();
+</script>
+</body>
+</html>
